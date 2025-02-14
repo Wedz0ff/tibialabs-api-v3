@@ -1,10 +1,19 @@
-export interface TibiaDataCharacter {
-  character: TibiaDataCharacterProps[];
+export interface TibiaDataDefaultResponse {
+  information: {
+    status: {
+      http_code: number;
+    };
+  };
+  data: any[];
 }
 
-export interface TibiaDataCharacterProps extends TibiaDataCharacter {
-  name: string;
-  vocation: string;
-  level: number;
-  world: string;
+export interface TibiaDataCharacter extends TibiaDataDefaultResponse {
+  character: {
+    character: {
+      name: string;
+      vocation: string;
+      level: number;
+      world: string;
+    };
+  };
 }
