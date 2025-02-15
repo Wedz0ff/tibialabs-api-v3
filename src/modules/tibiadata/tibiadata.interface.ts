@@ -17,3 +17,14 @@ export interface TibiaDataCharacter extends TibiaDataDefaultResponse {
     };
   };
 }
+
+export interface TibiaDataGuild extends TibiaDataDefaultResponse {
+  guild: {
+    name: string;
+    world: string;
+    founded: string;
+    players_online: number;
+    members_total: number;
+    members: any[];
+  };
+}
