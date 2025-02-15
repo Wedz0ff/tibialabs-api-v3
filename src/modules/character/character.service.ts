@@ -19,4 +19,15 @@ export class CharacterService {
     }
     return `Couldn't find character named: ${characterName}`;
   }
+
+  getSharedExpLevelRange(level: number): string {
+    const minLevel = Math.floor(level / 1.5);
+    const maxLevel = Math.round(level * 1.5);
+
+    if (level > 0) {
+      return `A level ${level} can share experience with levels ${minLevel} to ${maxLevel}.`;
+    }
+
+    return 'Please provide a valid level.';
+  }
 }
