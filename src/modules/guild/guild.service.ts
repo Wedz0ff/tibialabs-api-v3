@@ -9,27 +9,26 @@ export class GuildService {
 
   async getGuildData(guildName: string): Promise<string> {
     const url = `guild/${guildName}`;
-    const response =
+    const { data } =
       await this.tibiaDataService.tibiaDataRequest<TibiaDataGuild>(url);
 
-    const statusCode = response.information.status.http_code;
-
-    if (statusCode === 200) {
-      const { name, world, members, players_online, members_total, founded } =
-        response.guild;
-
-      const foundedDate = dayjs(founded).format('DD/MM/YYYY');
-      const avgLevel: number = members.length
-        ? Math.round(
-            members.reduce(
-              (sum: number, member: { level: number }) => sum + member.level,
-              0,
-            ) / members.length,
-          )
-        : 0;
-
-      return `${name} (World: ${world} - Avg Level: ${avgLevel}) has ${players_online}/${members_total} members online right now. This guild was founded on ${foundedDate}.`;
+    if (!data) {
+      return `Couldn't find a guild named: ${guildName}.`;
     }
-    return `Couldn't find a guild named: ${guildName}`;
+
+    const { name, world, members, players_online, members_total, founded } =
+      data.guild;
+
+    const foundedDate = dayjs(founded).format('DD/MM/YYYY');
+    const avgLevel: number = members.length
+      ? Math.round(
+          members.reduce(
+            (sum: number, member: { level: number }) => sum + member.level,
+            0,
+          ) / members.length,
+        )
+      : 0;
+
+    return `${name} (World: ${world} - Avg Level: ${avgLevel}) has ${players_online}/${members_total} members online right now. This guild was founded on ${foundedDate}.`;
   }
 }

@@ -8,26 +8,26 @@ export class CharacterService {
 
   async getCharacterData(characterName: string): Promise<string> {
     const url = `character/${characterName}`;
-    const response =
+    const { data } =
       await this.tibiaDataService.tibiaDataRequest<TibiaDataCharacter>(url);
 
-    const statusCode = response.information.status.http_code;
-
-    if (statusCode === 200) {
-      const { name, level, vocation, world } = response.character.character;
-      return `Character: ${name} - Level: ${level} - Vocation: ${vocation} - World: ${world}`;
+    if (!data) {
+      return `Couldn't find character named: ${characterName}.`;
     }
-    return `Couldn't find character named: ${characterName}`;
+
+    const { name, level, vocation, world } = data.character.character;
+
+    return `Character: ${name} - Level: ${level} - Vocation: ${vocation} - World: ${world}`;
   }
 
   getSharedExpLevelRange(level: number): string {
+    if (level <= 0) {
+      return 'Please provide a valid level.';
+    }
+
     const minLevel = Math.floor(level / 1.5);
     const maxLevel = Math.round(level * 1.5);
 
-    if (level > 0) {
-      return `A level ${level} can share experience with levels ${minLevel} to ${maxLevel}.`;
-    }
-
-    return 'Please provide a valid level.';
+    return `A level ${level} can share experience with levels ${minLevel} to ${maxLevel}.`;
   }
 }
