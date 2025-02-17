@@ -9,6 +9,9 @@ import { GuildController } from '@/modules/guild/guild.controller';
 import { GuildService } from '@/modules/guild/guild.service';
 import { WorldController } from '@/modules/world/world.controller';
 import { WorldService } from '@/modules/world/world.service';
+import { BoostedController } from '@modules/boosted/boosted.controller';
+import { BoostedService } from '@modules/boosted/boosted.service';
+import { PrismaService } from '@modules/db/prisma.service';
 
 @Module({
   imports: [HttpModule],
@@ -17,6 +20,7 @@ import { WorldService } from '@/modules/world/world.service';
     CharacterController,
     GuildController,
     WorldController,
+    BoostedController,
   ],
   providers: [
     AppService,
@@ -24,6 +28,8 @@ import { WorldService } from '@/modules/world/world.service';
     TibiaDataService,
     GuildService,
     WorldService,
+    BoostedService,
+    PrismaService,
   ],
 })
 export class AppModule {}
