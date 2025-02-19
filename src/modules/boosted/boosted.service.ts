@@ -6,6 +6,7 @@ import {
   TibiaDataBoostedCreature,
 } from '@modules/tibiadata/tibiadata.interface';
 import { TibiaDataService } from '@modules/tibiadata/tibiadata.service';
+import * as dayjs from 'dayjs';
 
 @Injectable()
 export class BoostedService {
@@ -60,5 +61,65 @@ export class BoostedService {
 
     const { name } = data.boostable_bosses.boosted;
     return name;
+  }
+
+  async updateBoostedCreature() {
+    const boostedCreature = (
+      await this.getCurrentBoostedCreature()
+    ).toLocaleLowerCase();
+
+    if (!boostedCreature) {
+      console.log(`Couldn't fetch boosted creature`);
+      return;
+    }
+
+    const today = dayjs().startOf('day').toDate();
+
+    const existingEntry = await this.prisma.creature.findFirst({
+      where: { date: today },
+    });
+
+    if (existingEntry) {
+      await this.prisma.creature.update({
+        where: { id: existingEntry.id },
+        data: { name: boostedCreature },
+      });
+    } else {
+      await this.prisma.creature.create({
+        data: { date: today, name: boostedCreature },
+      });
+    }
+
+    return 'Updated boosted creature.';
+  }
+
+  async updateBoostedBoss() {
+    const boostedBoss = (
+      await this.getCurrentBoostedBoss()
+    ).toLocaleLowerCase();
+
+    if (!boostedBoss) {
+      console.log(`Couldn't fetch boosted creature`);
+      return;
+    }
+
+    const today = dayjs().startOf('day').toDate();
+
+    const existingEntry = await this.prisma.boss.findFirst({
+      where: { date: today },
+    });
+
+    if (existingEntry) {
+      await this.prisma.boss.update({
+        where: { id: existingEntry.id },
+        data: { name: boostedBoss },
+      });
+    } else {
+      await this.prisma.boss.create({
+        data: { date: today, name: boostedBoss },
+      });
+    }
+
+    return 'Updated boosted boss.';
   }
 }

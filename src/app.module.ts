@@ -12,9 +12,11 @@ import { WorldService } from '@/modules/world/world.service';
 import { BoostedController } from '@modules/boosted/boosted.controller';
 import { BoostedService } from '@modules/boosted/boosted.service';
 import { PrismaService } from '@modules/db/prisma.service';
+import { ScheduleModule } from '@nestjs/schedule';
+import { BoostedScheduler } from '@modules/boosted/boosted.scheduler';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, ScheduleModule.forRoot()],
   controllers: [
     AppController,
     CharacterController,
@@ -30,6 +32,7 @@ import { PrismaService } from '@modules/db/prisma.service';
     WorldService,
     BoostedService,
     PrismaService,
+    BoostedScheduler,
   ],
 })
 export class AppModule {}

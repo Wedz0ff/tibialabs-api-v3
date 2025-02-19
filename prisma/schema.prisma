@@ -10,11 +10,11 @@ datasource db {
 model Creature {
   id    String   @id @default(auto()) @map("_id") @db.ObjectId
   name  String
-  date  DateTime
+  date  DateTime @unique
 }
 
 model Boss {
   id    String   @id @default(auto()) @map("_id") @db.ObjectId
   name  String
-  date  DateTime
+  date  DateTime @unique
 }

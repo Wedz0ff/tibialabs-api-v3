@@ -15,7 +15,6 @@ async function seedCreatures() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const data: Record<string, string> = response.data;
 
-    // Transform data into an array of { name, date }
     const creatures = Object.entries(data).map(([date, name]) => ({
       date: new Date(date),
       name: String(name),
@@ -47,7 +46,6 @@ async function seedBosses() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const data: Record<string, string> = response.data;
 
-    // Transform data into an array of { name, date }
     const creatures = Object.entries(data).map(([date, name]) => ({
       date: new Date(date),
       name: String(name),
