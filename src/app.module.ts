@@ -14,6 +14,8 @@ import { BoostedService } from '@modules/boosted/boosted.service';
 import { PrismaService } from '@modules/db/prisma.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { BoostedScheduler } from '@modules/boosted/boosted.scheduler';
+import { MiscService } from './modules/misc/misc.service';
+import { MiscController } from './modules/misc/misc.controller';
 
 @Module({
   imports: [HttpModule, ScheduleModule.forRoot()],
@@ -23,6 +25,7 @@ import { BoostedScheduler } from '@modules/boosted/boosted.scheduler';
     GuildController,
     WorldController,
     BoostedController,
+    MiscController,
   ],
   providers: [
     AppService,
@@ -33,6 +36,7 @@ import { BoostedScheduler } from '@modules/boosted/boosted.scheduler';
     BoostedService,
     PrismaService,
     BoostedScheduler,
+    MiscService,
   ],
 })
 export class AppModule {}

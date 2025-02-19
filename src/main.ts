@@ -7,9 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('TibiaLabs API')
-    .setDescription(
-      'Useful informations for your Tibian applications or stream.',
-    )
+    .setDescription('Useful informations for your Tibian applications.')
     .setVersion('3.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
