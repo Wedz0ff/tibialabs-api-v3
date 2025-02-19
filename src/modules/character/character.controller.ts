@@ -1,7 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { CharacterService } from './character.service';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('character')
+@CacheTTL(60 * 5 * 1000)
+@UseInterceptors(CacheInterceptor)
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}
 

@@ -1,7 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { GuildService } from './guild.service';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('guild')
+@CacheTTL(60 * 5 * 1000)
+@UseInterceptors(CacheInterceptor)
 export class GuildController {
   constructor(private readonly guildService: GuildService) {}
 

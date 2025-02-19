@@ -1,7 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { WorldService } from './world.service';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('world')
+@CacheTTL(60 * 5 * 1000)
+@UseInterceptors(CacheInterceptor)
 export class WorldController {
   constructor(private readonly worldService: WorldService) {}
 

@@ -16,9 +16,16 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { BoostedScheduler } from '@modules/boosted/boosted.scheduler';
 import { MiscService } from './modules/misc/misc.service';
 import { MiscController } from './modules/misc/misc.controller';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
-  imports: [HttpModule, ScheduleModule.forRoot()],
+  imports: [
+    HttpModule,
+    ScheduleModule.forRoot(),
+    CacheModule.register({
+      ttl: 60 * 1000 * 5,
+    }),
+  ],
   controllers: [
     AppController,
     CharacterController,

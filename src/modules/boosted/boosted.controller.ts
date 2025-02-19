@@ -1,7 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { BoostedService } from './boosted.service';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('boosted')
+@CacheTTL(60 * 5 * 1000)
+@UseInterceptors(CacheInterceptor)
 export class BoostedController {
   constructor(private readonly boostedService: BoostedService) {}
 
