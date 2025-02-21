@@ -16,7 +16,15 @@ export class BoostedService {
   ) {}
 
   async getAllCreatures() {
-    return this.prisma.creature.findMany();
+    const creatureList = await this.prisma.creature.findMany();
+    const currenTime = dayjs().toISOString();
+    return {
+      data: creatureList,
+      informations: {
+        api_version: 3,
+        generated_at: currenTime,
+      },
+    };
   }
 
   async createCreature(data: BoostedSchema) {
@@ -41,7 +49,15 @@ export class BoostedService {
   }
 
   async getAllBosses() {
-    return this.prisma.boss.findMany();
+    const bossList = await this.prisma.boss.findMany();
+    const currenTime = dayjs().toISOString();
+    return {
+      data: bossList,
+      informations: {
+        api_version: 3,
+        generated_at: currenTime,
+      },
+    };
   }
 
   async createBoss(data: BoostedSchema) {
