@@ -1,27 +1,26 @@
+# Use an official Node.js image
+FROM node:23-alpine
 
-# Use the official Node.js image as the base image
-FROM node:20
+# Set working directory
+WORKDIR /app
 
-FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+# Install pnpm globally
+RUN npm install -g pnpm
 
+# Copy package manager files first (for caching)
+COPY package.json pnpm-lock.yaml prisma ./
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install the application dependencies
-RUN pnpm install
+# Generate Prisma client
+RUN pnpm prisma generate
 
 # Copy the rest of the application files
 COPY . .
 
-# Build the NestJS application
-RUN pnpm run build
+# Build the app
+RUN pnpm build
 
 # Expose the application port
 EXPOSE 3000
