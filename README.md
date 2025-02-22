@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://tibialabs.com/" target="blank"><img src="htthttps://i.imgur.com/9jP3lNK.png" alt="TibiaLabs Logo" /></a>
+  <a href="http://tibialabs.com/" target="blank"><img src="https://i.imgur.com/9jP3lNK.png" alt="TibiaLabs Logo" /></a>
 </p>
 
   <p align="center">TibiaLabs API v3 written in <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> using <a href="https://nestjs.com/" target="_blank">NestJS</a> as framework.</p>
