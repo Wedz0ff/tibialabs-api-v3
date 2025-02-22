@@ -16,7 +16,9 @@ export class BoostedService {
   ) {}
 
   async getAllCreatures() {
-    const creatureList = await this.prisma.creature.findMany();
+    const creatureList = await this.prisma.creature.findMany({
+      orderBy: { date: 'desc' },
+    });
     const currenTime = dayjs().toISOString();
     return {
       data: creatureList,
