@@ -35,6 +35,9 @@ importers:
       '@prisma/client':
         specifier: ^6.3.1
         version: 6.3.1(prisma@6.3.1(typescript@5.7.3))(typescript@5.7.3)
+      '@scalar/nestjs-api-reference':
+        specifier: ^0.3.184
+        version: 0.3.184
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -903,6 +906,18 @@ packages:
   '@prisma/get-platform@6.3.1':
     resolution: {integrity: sha512-AYLq6Hk9xG73JdLWJ3Ip9Wg/vlP7xPvftGBalsPzKDOHr/ImhwJ09eS8xC2vNT12DlzGxhfk8BkL0ve2OriNhQ==}
 
+  '@scalar/nestjs-api-reference@0.3.184':
+    resolution: {integrity: sha512-VKNZN8QADdXxLS270QbVSAo76PgduSawjJHKtBRBpGzV/ITaueRGFkyi6MZ2nY2MrW4JTK/seazptAatKKhsqg==}
+    engines: {node: '>=18'}
+
+  '@scalar/openapi-types@0.1.8':
+    resolution: {integrity: sha512-iufA5/6hPCmRIVD2eh7qGpoKvoA08Gw/qUb2JECifBtAwA93fo7+1k9uHK440f2LMJsbxIzA+nv7RS0BmfiO/g==}
+    engines: {node: '>=18'}
+
+  '@scalar/types@0.0.34':
+    resolution: {integrity: sha512-q01ctijmHArM5KOny2zU+sHfhpsgOAENrDENecK2TsQNn5FYLmFZouMKeW2M6F7KFLPZnFxUiL/rT88b6Rp/Kg==}
+    engines: {node: '>=18'}
+
   '@scarf/scarf@1.4.0':
     resolution: {integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==}
 
@@ -1172,6 +1187,9 @@ packages:
   '@typescript-eslint/visitor-keys@8.24.0':
     resolution: {integrity: sha512-kArLq83QxGLbuHrTMoOEWO+l2MwsNS2TGISEdx8xgqpkbytB07XmlQyQdNDrCc1ecSqx0cnmhGvpX+VBwqqSkg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@unhead/schema@1.11.19':
+    resolution: {integrity: sha512-7VhYHWK7xHgljdv+C01MepCSYZO2v6OhgsfKWPxRQBDDGfUKCUaChox0XMq3tFvXP6u4zSp6yzcDw2yxCfVMwg==}
 
   '@webassemblyjs/ast@1.14.1':
     resolution: {integrity: sha512-nuBEDgQfm1ccRp/8bCQrx1frohyufl4JlbMMZ4P1wpeOfDhF6FQkxZJ1b/e+PLwr6X1Nhw6OLme5usuBWYBvuQ==}
@@ -2183,6 +2201,9 @@ packages:
   hexoid@2.0.0:
     resolution: {integrity: sha512-qlspKUK7IlSQv2o+5I7yhUd7TxlOG2Vr5LTa3ve2XSNVKAL/n/u/7KLvKmFNimomDIKvZFXWHv0T12mv7rT8Aw==}
     engines: {node: '>=8'}
+
+  hookable@5.5.3:
+    resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
@@ -3537,6 +3558,9 @@ packages:
     resolution: {integrity: sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==}
     engines: {node: '>=18'}
 
+  zhead@2.2.4:
+    resolution: {integrity: sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==}
+
 snapshots:
 
   '@ampproject/remapping@2.3.0':
@@ -4435,6 +4459,17 @@ snapshots:
     dependencies:
       '@prisma/debug': 6.3.1
 
+  '@scalar/nestjs-api-reference@0.3.184':
+    dependencies:
+      '@scalar/types': 0.0.34
+
+  '@scalar/openapi-types@0.1.8': {}
+
+  '@scalar/types@0.0.34':
+    dependencies:
+      '@scalar/openapi-types': 0.1.8
+      '@unhead/schema': 1.11.19
+
   '@scarf/scarf@1.4.0': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
@@ -4736,6 +4771,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.24.0
       eslint-visitor-keys: 4.2.0
+
+  '@unhead/schema@1.11.19':
+    dependencies:
+      hookable: 5.5.3
+      zhead: 2.2.4
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -5839,6 +5879,8 @@ snapshots:
       function-bind: 1.1.2
 
   hexoid@2.0.0: {}
+
+  hookable@5.5.3: {}
 
   html-escaper@2.0.2: {}
 
@@ -7315,3 +7357,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yoctocolors-cjs@2.1.2: {}
+
+  zhead@2.2.4: {}

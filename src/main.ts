@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,7 +15,20 @@ async function bootstrap() {
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/docs', app, documentFactory);
+  SwaggerModule.setup('/swagger', app, documentFactory);
+
+  app.use(
+    '/docs',
+    apiReference({
+      metaData: {
+        title: 'TibiaLabs API v3',
+      },
+      theme: 'purple',
+      spec: {
+        content: documentFactory,
+      },
+    }),
+  );
 
   app.enableCors({
     origin: '*',
