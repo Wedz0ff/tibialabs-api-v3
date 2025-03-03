@@ -37,6 +37,18 @@ export interface TibiaDataWorld {
   };
 }
 
+export interface TibiaDataAllWorlds {
+  worlds: {
+    players_online: number;
+    regular_worlds: World[];
+  };
+}
+
+export interface World {
+  name: string;
+  players_online: number;
+}
+
 export interface TibiaDataBoostedBoss {
   boostable_bosses: {
     boosted: {

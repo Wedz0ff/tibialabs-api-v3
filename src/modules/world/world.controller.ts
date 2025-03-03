@@ -13,4 +13,10 @@ export class WorldController {
     const req = await this.worldService.getWorldData(name);
     return req;
   }
+
+  @Get('all')
+  async getAllWorlds(): Promise<string> {
+    const req = await this.worldService.getAllWorldsData();
+    return req;
+  }
 }
