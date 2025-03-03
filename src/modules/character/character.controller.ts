@@ -19,4 +19,14 @@ export class CharacterController {
     const charLvl = parseInt(level, 10);
     return this.characterService.getSharedExpLevelRange(charLvl);
   }
+
+  @Get('exptolevel/:from/{*to}')
+  getExperienceToLevel(
+    @Param('from') from: string,
+    @Param('to') to?: string,
+  ): string {
+    const startLevel = parseInt(from, 10);
+    const targetLevel = to ? parseInt(to, 10) : startLevel + 1;
+    return this.characterService.getExperienceToLevel(startLevel, targetLevel);
+  }
 }
